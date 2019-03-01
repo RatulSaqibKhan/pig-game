@@ -1,14 +1,13 @@
 /*
- YOUR 3 CHALLENGES
+ YOUR 3rd CHALLENGE
  Change the game to follow these rules:
- 1. A player looses his ENTIRE score when he rolls two 6 in a row. After that, it's the next player's turn. (Hint: Always save the previous dice roll in a separate variable)
- 2. Add an input field to the HTML where players can set the winning score, so that they can change the predefined score of 100. (Hint: you can read that value with the .value property in JavaScript. This is a good oportunity to use google to figure this out :)
  3. Add another dice to the game, so that there are two dices now. The player looses his current score when one of them is a 1. (Hint: you will need CSS to position the second dice, so take a look at the CSS code for the first one.)
  */
 var scores, activePlayer, activeScore, isWinnerExist, countRoll, diceValues, finalScore;
 
 // Define dice element to a constant
-const btnDom = document.querySelector('.dice');
+const btn1Dom = document.querySelector('.dice1');
+const btn2Dom = document.querySelector('.dice2');
 
 
 //Initialize application for first loading the app
@@ -26,28 +25,25 @@ document.querySelector('.btn-roll').addEventListener('click', function () {
     }
     countRoll += 1;
     // 1. Generate dice number
-    var dice = Math.floor(Math.random() * 6) + 1;
-    btnDom.src = './images/dice-' + dice + '.png';
-    // Store the two consecutive dice values
-    if (countRoll % 2 === 1) {
-        diceValues[0] = dice;
-    } else {
-        diceValues[1] = dice;
-    }
-    // check if two consecutive 6 rolls
-    if (diceValues[0] === 6 && diceValues[1] === 6) {
+    var dice1 = Math.floor(Math.random() * 6) + 1;
+    var dice2 = Math.floor(Math.random() * 6) + 1;
+    btn1Dom.src = './images/dice-' + dice1 + '.png';
+    btn2Dom.src = './images/dice-' + dice2 + '.png';
+    // check if two dices are 6
+    if (dice1 === 6 && dice2 === 6) {
         scores[activePlayer] = 0;
         document.getElementById('score-' + activePlayer).textContent = scores[activePlayer];
         // next player
         nextPlayer();
     }
     // 2. Add to current score if dice value is NOT 1
-    else if (dice !== 1) {
-        activeScore += dice;
+    else if (dice1 !== 1 && dice2 !== 1) {
+        activeScore += dice1 + dice2;
         // 3. Place the score to activePlayer current score
         document.getElementById('current-' + activePlayer).textContent = activeScore;
         // 4. Show the dice
-        btnDom.style.display = 'block';
+        btn1Dom.style.display = 'block';
+        btn2Dom.style.display = 'block';
     } else {
         // next player
         nextPlayer();
@@ -110,7 +106,8 @@ function init() {
     document.getElementById('name-1').textContent = 'Player 2';
 
 // Hide the dice first
-    btnDom.style.display = 'none';
+    btn1Dom.style.display = 'none';
+    btn2Dom.style.display = 'none';
 
     // Set the Final Value in DOM
     document.querySelector('.final_score').value = 100;
@@ -141,7 +138,8 @@ function nextPlayer() {
     // 3. Set the active score to 0
     activeScore = 0;
     // 4. hide the dice if 1
-    btnDom.style.display = 'none';
+    btn1Dom.style.display = 'none';
+    btn2Dom.style.display = 'none';
     // 5. Change the active panel
     document.querySelector('.player-0-panel').classList.toggle('active');
     document.querySelector('.player-1-panel').classList.toggle('active');
