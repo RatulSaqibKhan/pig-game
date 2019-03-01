@@ -153,5 +153,31 @@ i {
     box-shadow: 0px 10px 60px rgba(0, 0, 0, 0.10);
 }
 
+.dice1 {
+    position: absolute;
+    left: 50%;
+    top: 108px;
+    transform: translateX(-50%);
+    height: 100px;
+    box-shadow: 0px 10px 60px rgba(0, 0, 0, 0.10);
+}
+.dice2 {
+    position: absolute;
+    left: 50%;
+    top: 238px;
+    transform: translateX(-50%);
+    height: 100px;
+    box-shadow: 0px 10px 60px rgba(0, 0, 0, 0.10);
+}
+
 .winner { background-color: #f7f7f7; }
 .winner .player-name { font-weight: 300; color: #EB4D4D; }
+
+.final_score {
+    position: absolute;
+    left: 70%;
+    top: 48px;
+    transform: translateX(-30%);
+    height: 40px;
+    box-shadow: 0px 10px 60px rgba(0, 0, 0, 0.10);
+}
